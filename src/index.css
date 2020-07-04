@@ -1,13 +1,27 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+*{padding:0;margin:0;box-sizing: border-box;}
+
+body{height:100vh;background: rgb(221, 219, 219);}
+
+#header {font-size: 100px;text-align: center;user-select: none;
+font-family: 'Abel', sans-serif;color:#000}
+#header>img{width:80px;height:80px;margin-top: -20px;animation: spin 10s linear infinite;}
+
+@keyframes spin{100% {transform: rotate(360deg)}}
+
+
+.result-card{width:300px;height:250px;border-radius: 10px;background: #fff}
+.result-card-color-red{border:1px solid red;border-bottom: 10px solid red;}
+.result-card-color-blue{border:1px solid blue;border-bottom: 10px solid blue;}
+.result-card-color-green{border:1px solid green;border-bottom: 10px solid green;}
+
+.result-card-color-red>h1{color:red}
+.result-card-color-blue>h1{color:blue}
+.result-card-color-green>h1{color:green}
+
+.result-card-color-red ::selection{background: red;color:white}
+.result-card-color-blue ::selection{background: blue;color:white}
+.result-card-color-green ::selection{background: green;color:white}
+
+select{outline: none}
