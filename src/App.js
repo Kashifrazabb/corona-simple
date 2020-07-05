@@ -17,13 +17,13 @@ function App() {
 
     (async ()=>{
     const res1=await axios.get('https://api.covid19api.com/countries');
-    const res2=await axios.get(`https://api.covid19api.com/country/${selectValue}`);
     const COUNTRIES=res1.data.map(i=>i.Country);
-    const COUNTRY=res2.data.slice(-1).pop();
     setCountries(COUNTRIES);
+    const res2=await axios.get(`https://api.covid19api.com/country/${selectValue}`);
+    const COUNTRY=res2.data.slice(-1).pop();
     setCountry(COUNTRY);
-  
-    })();
+    })()
+    
   },[selectValue])
 
   return (
