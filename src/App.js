@@ -7,6 +7,7 @@ import axios from 'axios';
 function App() {
   const [country,setCountry]=useState('');
   const [countries,setCountries]=useState([]);
+  const [global,setGlobal]=useState({});
   const [selectValue,setSelectValue]=useState('');
 
   const handleSelect=(e)=>{
@@ -16,9 +17,11 @@ function App() {
   useEffect (()=>{
 
     (async ()=>{
-    const res1=await axios.get('https://api.covid19api.com/countries');
-    const COUNTRIES=res1.data.map(i=>i.Country);
+    const res1=await axios.get('https://api.covid19api.com/summary');
+    const COUNTRIES=res1.data.Countries.map(i=>i.Country);
+    const GLOBAL=res1.data.Global;
     setCountries(COUNTRIES);
+    setGlobal(GLOBAL);
     const res2=await axios.get(`https://api.covid19api.com/country/${selectValue}`);
     const COUNTRY=res2.data.slice(-1).pop();
     setCountry(COUNTRY);
@@ -26,12 +29,13 @@ function App() {
     
   },[selectValue])
 
+  
   return (
     <>
         <Header/>
         <Select handleSelect={handleSelect} selectValue={selectValue} 
         countries={countries}/>
-        <Result country={country}/>
+        <Result country={country} global={global} selectValue={selectValue}/>
     </>
   );
 }
