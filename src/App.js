@@ -1,21 +1,37 @@
 import React,{useEffect, useState} from 'react';
-import {Fetch} from './components/Fetch';
 import Header from './components/Header';
 import Result from './components/Result';
 import Select from './components/Select';
+import axios from 'axios';
 
 function App() {
-  const [data,setData]=useState({});
+  const [country,setCountry]=useState('');
+  const [countries,setCountries]=useState([]);
+  const [selectValue,setSelectValue]=useState('');
 
-  useEffect (async ()=>{
-    setData(await Fetch())
-  },[])
-  console.log(data)
+  const handleSelect=(e)=>{
+    setSelectValue(e.target.value)
+  }
+
+  useEffect (()=>{
+
+    (async ()=>{
+    const res1=await axios.get('https://api.covid19api.com/countries');
+    const res2=await axios.get(`https://api.covid19api.com/country/${selectValue}`);
+    const COUNTRIES=res1.data.map(i=>i.Country);
+    const COUNTRY=res2.data.slice(-1).pop();
+    setCountries(COUNTRIES);
+    setCountry(COUNTRY);
+  
+    })();
+  },[selectValue])
+
   return (
     <>
         <Header/>
-        <Select/>
-        <Result data={data}/>
+        <Select handleSelect={handleSelect} selectValue={selectValue} 
+        countries={countries}/>
+        <Result country={country}/>
     </>
   );
 }

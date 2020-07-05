@@ -1,14 +1,14 @@
 import React from 'react';
 
-const Select = () => {
+const Select = ({handleSelect,selectValue,countries}) => {
+
     return (
+        
         <div className='container select-container '>
-            <select className='float-right shadow'>
-                <option >Global</option>
-                <option >Pakistan</option>
-                <option >Turkey</option>
-                <option >China</option>
-                <option >America</option>
+            <select onChange={handleSelect} value={selectValue} className='float-right shadow'>
+                <option value="" disbaled selected>Select Country</option>
+                <option value="pakistan">Pakistan</option>
+                {countries.map(i=><option value={i}>{i}</option>)}
             </select>
         </div>
     )
