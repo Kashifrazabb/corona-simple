@@ -9,13 +9,11 @@ function App() {
   const [countries,setCountries]=useState([]);
   const [global,setGlobal]=useState({});
   const [date,setDate]=useState('');
-  var [selectValue,setSelectValue]=useState('');
+  var [selectValue,setSelectValue]=useState('Global');
 
   const handleSelect=(e)=>{
     setSelectValue(e.target.value)
   }
-
-  selectValue=selectValue===''?'Global':selectValue;
 
   useEffect (()=>{
 
@@ -27,10 +25,16 @@ function App() {
     setCountries(COUNTRIES);
     setGlobal(GLOBAL);
     setDate(DATE);
+
+    if (selectValue!=='Global'){ 
     const res2=await axios.get(`https://api.covid19api.com/country/${selectValue}`);
     const COUNTRY=res2.data.slice(-1).pop();
-    setCountry(COUNTRY);
+    setCountry(COUNTRY)}
     })()
+
+  return ()=>{
+
+  }
     
   },[selectValue])
 
