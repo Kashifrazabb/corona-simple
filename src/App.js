@@ -14,6 +14,7 @@ const App = () => {
   const handleSelect=(e)=>setSelectValue(e.target.value)
 
   useEffect(()=>{
+    
       (async ()=>{
           const DATA=(await axios.get('https://api.covid19api.com/summary')).data;
           setCountries(DATA.Countries.map(c=>c.Country))
@@ -25,13 +26,15 @@ const App = () => {
   },[])
 
   if (data){
+    
       const INDEX=data.findIndex(i=>i.Country===selectValue);
       if (selectValue!=='Global'){
-          var {TotalConfirmed,TotalRecovered,TotalDeaths}=data[INDEX];
+        var {TotalConfirmed,TotalRecovered,TotalDeaths}=data[INDEX];
       }
       else if (selectValue==='Global' && global){
-          var {TotalConfirmed,TotalRecovered,TotalDeaths}=global;
+        var {TotalConfirmed,TotalRecovered,TotalDeaths}=global;
       }
+
   }
 
   return (
