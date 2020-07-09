@@ -10,7 +10,6 @@ font-family: 'Abel', sans-serif;color:#000}
 
 @keyframes spin{100% {transform: rotate(360deg)}}
 
-
 .result-card{width:300px;height:250px;border-radius: 10px;background: #fff}
 .result-card-color-red{border:1px solid red;border-bottom: 10px solid red;}
 .result-card-color-blue{border:1px solid blue;border-bottom: 10px solid blue;}
